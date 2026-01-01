@@ -86,11 +86,29 @@ export const loginPage = (req,res) => {
 export const login = async(req,res) => {
     try {
         let response = await axiosInstance.post('/user/login',req.body);
+        console.log(response);
+        if(response.data.token){
+            
         res.cookie('token',response.data.token);
         console.log("Login Success.");
         return res.redirect('/');
+        }else{
+            console.log("user not found.");
+            
+            return res.redirect('/login');
+        }
     } catch (error) {
         console.log(error.message);
         return res.redirect('/login');
     }
 }
+
+export const logout = (req, res) => {
+  try {
+    res.clearCookie("token"); 
+    return res.redirect("/login");
+  } catch (error) {
+    console.log(error.message);
+    return res.redirect("/login");
+  }
+};

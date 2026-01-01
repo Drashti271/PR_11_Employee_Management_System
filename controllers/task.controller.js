@@ -1,7 +1,8 @@
 import TaskModel from "../models/task.model.js";
+import axiosInstance from "../configs/axiosInstance.js";
 
 export const addTaskPage = (req,res) => {
-    return res.render('./')
+    return res.render('./pages/addTask.ejs')
 }
 
 export const addTask = async (req, res) => {
@@ -15,10 +16,10 @@ export const addTask = async (req, res) => {
         });
 
         console.log("Task Added");
-        return res.redirect('/api/view-task');
+        return res.redirect('/api/viewTask');
     } catch (error) {
         console.log(error.message);
-        return res.redirect('/api/add-task');
+        return res.redirect('/api/addTask');
     }
 };
 
@@ -30,12 +31,12 @@ export const viewTask = async (req, res) => {
             description: 1
         });
 
-        return res.render('./pages/view-task.ejs', {
+        return res.render('./pages/viewTask.ejs', {
             data: tasks
         });
     } catch (error) {
         console.log(error.message);
-        return res.render('./pages/view-task.ejs', {
+        return res.render('./pages/viewTask.ejs', {
             data: []
         });
     }
@@ -47,28 +48,38 @@ export const updateTask = async (req, res) => {
         const { name, date, description } = req.body;
 
         await TaskModel.updateOne(
-            { _id: id },
-            { $set: { name, date, description } }
+            { _id: id }
         );
 
         console.log("Task Updated");
-        return res.redirect('/api/view-task');
+        return res.redirect('/api/viewTask');
     } catch (error) {
         console.log(error.message);
-        return res.redirect('/api/view-task');
+        return res.redirect('/api/viewTask');
     }
 };
 
 export const deleteTask = async (req, res) => {
-    try {
-        const { id } = req.params;
+  try {
+    const { id } = req.params;
 
-        await TaskModel.deleteOne({ _id: id });
-        console.log("Task Deleted");
-
-        return res.redirect('/api/view-task');
-    } catch (error) {
-        console.log(error.message);
-        return res.redirect('/api/view-task');
+    if (!id) {
+      console.log("ID not received");
+      return res.redirect('/api/viewTask');
     }
+
+    const task = await TaskModel.findByIdAndDelete(id);
+
+    if (!task) {
+      console.log("Task not found");
+    } else {
+      console.log("Task Deleted Successfully");
+    }
+
+    return res.redirect('/api/viewTask');
+  } catch (error) {
+    console.log("Delete Error:", error.message);
+    return res.redirect('/api/viewTask');
+  }
 };
+

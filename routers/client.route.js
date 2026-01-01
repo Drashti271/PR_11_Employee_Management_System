@@ -1,5 +1,5 @@
 import { Router } from "express";
-import { addManagerPage, dashboard, addManager, deleteManager, updateManager, viewManager, loginPage, login } from "../controllers/client.controller.js";
+import { addManagerPage, dashboard, addManager, deleteManager, updateManager, viewManager, loginPage, login, logout } from "../controllers/client.controller.js";
 import userAuth from "../middlewares/userAuth.middleware.js";
 import checkUserRole from "../middlewares/userRole.middleware.js";
 
@@ -7,6 +7,7 @@ const clientRouter = Router();
 
 clientRouter.get('/login',loginPage);
 clientRouter.post('/login',login);
+clientRouter.get('/logout',logout);
 
 clientRouter.use(userAuth);
 
