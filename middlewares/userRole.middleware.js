@@ -2,7 +2,7 @@ import jwt from "jsonwebtoken";
 
 const checkUserRole = (req,res,next)=>{
     const { token } = req.cookies;
-    const decord = jwt.verify(token,'privateKey');
+    const decord = jwt.verify(token, process.env.JWT_SECRET);
     console.log(req.params);
     console.log(decord);
     

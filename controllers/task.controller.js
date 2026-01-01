@@ -1,66 +1,74 @@
 import TaskModel from "../models/task.model.js";
-import axiosInstance from "../configs/axiosInstance.js";
 
-export const addTaskPage = (req, res) => {
-    return res.render('./pages/addTask.ejs');
-};
+export const addTaskPage = (req,res) => {
+    return res.render('./')
+}
 
 export const addTask = async (req, res) => {
     try {
-        await axiosInstance.post('/task', req.body);
-        console.log("Task Added.");
-        return res.redirect(req.get('Referrer') || "/");
+        const { name, date, description } = req.body;
+
+        await TaskModel.create({
+            name,
+            date,
+            description
+        });
+
+        console.log("Task Added");
+        return res.redirect('/api/view-task');
     } catch (error) {
         console.log(error.message);
-        return res.redirect(req.get('Referrer') || "/");
+        return res.redirect('/api/add-task');
     }
 };
 
 export const viewTask = async (req, res) => {
-  try {
-    const response = await axiosInstance.get('/task');
-    const tasks = response.data;
-    const role = req.user.role; 
-    return res.render('./pages/viewTasks.ejs', { data: tasks, role });
-  } catch (error) {
-    console.log(error.message);
-    return res.redirect('/'); 
-  }
-};
-
-
-export const updateTaskPage = async (req, res) => {
-    const taskId = req.params.id;
     try {
-        const response = await axiosInstance.get(`/task/${taskId}`);
-        const task = response.data;
-        return res.render('./pages/updateTask.ejs', { task });
+        const tasks = await TaskModel.find({}, {
+            name: 1,
+            date: 1,
+            description: 1
+        });
+
+        return res.render('./pages/view-task.ejs', {
+            data: tasks
+        });
     } catch (error) {
         console.log(error.message);
-        return res.redirect(req.get('Referrer') || "/");
+        return res.render('./pages/view-task.ejs', {
+            data: []
+        });
     }
 };
 
 export const updateTask = async (req, res) => {
-    const taskId = req.params.id;
     try {
-        await axiosInstance.put(`/task/${taskId}`, req.body);
-        console.log("Task Updated.");
-        return res.redirect(req.get('Referrer') || "/");
+        const { id } = req.params;
+        const { name, date, description } = req.body;
+
+        await TaskModel.updateOne(
+            { _id: id },
+            { $set: { name, date, description } }
+        );
+
+        console.log("Task Updated");
+        return res.redirect('/api/view-task');
     } catch (error) {
         console.log(error.message);
-        return res.redirect(req.get('Referrer') || "/");
+        return res.redirect('/api/view-task');
     }
 };
 
 export const deleteTask = async (req, res) => {
-    const taskId = req.params.id;
     try {
-        await axiosInstance.delete(`/task/${taskId}`);
-        console.log("Task Deleted.");
-        return res.redirect(req.get('Referrer') || "/");
+        const { id } = req.params;
+
+        await TaskModel.deleteOne({ _id: id });
+        console.log("Task Deleted");
+
+        return res.redirect('/api/view-task');
     } catch (error) {
         console.log(error.message);
-        return res.redirect(req.get('Referrer') || "/");
+        return res.redirect('/api/view-task');
     }
 };

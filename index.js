@@ -5,7 +5,6 @@ import bodyParser from "body-parser";
 import db from "./configs/database.js";
 import cookieParser from "cookie-parser";
 import clientRouter from "./routers/client.route.js";
-import taskRouter from "./routers/task.route.js";
 
 const app = express();
 
@@ -13,12 +12,11 @@ const port = dotenv.PORT || 3000;
 app.use(bodyParser.urlencoded({extended : true}));
 app.use(bodyParser.json());
 app.use(cookieParser());
-app.set('view engine','ejs');
 app.use(express.static('public'));
+app.set('view engine','ejs');
 
 app.use('/api',router);
 app.use('/',clientRouter);
-app.use('/task',taskRouter);
 
 app.listen(port,(error) => {
     if(!error){
