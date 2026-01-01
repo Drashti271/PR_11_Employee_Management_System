@@ -36,48 +36,82 @@ Environment	dotenv
 PR_11_EMPLOYEE_MANAGEMENT
 │
 ├── configs
+
 │   ├── axiosInstance.js
+
 │   ├── database.js
+
 │   └── dotenv.js
+
 │
 ├── controllers
+
 │   ├── client.controller.js
+
 │   ├── task.controller.js
+
 │   └── user.controller.js
+
 │
 ├── middlewares
+
 │   ├── userAuth.middleware.js
+
 │   └── userRole.middleware.js
+
 │
 ├── models
+
 │   ├── task.model.js
+
 │   └── user.model.js
+
 │
 ├── public
+
 │
 ├── routers
+
 │   ├── client.route.js
+
 │   ├── task.route.js
+
 │   ├── user.route.js
+
 │   └── index.js
 │
 ├── views
+
 │   ├── pages
+
 │   │   ├── addManager.ejs
+
 │   │   ├── addTask.ejs
+
 │   │   ├── login.ejs
+
 │   │   ├── viewManager.ejs
+
 │   │   └── viewTask.ejs
+
 │   │
 │   └── partials
+
 │       ├── header.ejs
+
 │       ├── footer.ejs
+
 │       └── index.ejs
+
 │
 ├── .env
+
 ├── .gitignore
+
 ├── index.js
+
 ├── package.json
+
 └── package-lock.json
 
 ⚙️ Configuration Files (configs)
