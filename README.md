@@ -1,28 +1,29 @@
-# PR_11_Employee_Management_System
-
-Employee Management System (EMS)
+PR_11_Employee_Management_System
+📘 Employee Management System (EMS)
 📌 Project Overview
 
-The Employee Management System is a web-based application built with Node.js, Express.js, MongoDB, and EJS.
-It helps manage employees (users), managers, and tasks with role-based access control and authentication.
+The Employee Management System (EMS) is a web-based application developed using Node.js, Express.js, MongoDB, and EJS.
+The system helps manage employees, managers, and tasks with role-based authentication and authorization.
+
+It follows the MVC (Model–View–Controller) architecture and ensures secure access using middleware.
 
 🚀 Features
 
-User authentication (Login)
+User Authentication (Login)
 
-Role-based authorization (Admin / Manager / Employee)
+Role-Based Authorization (Admin / Manager / Employee)
 
-Employee (User) management
+Employee (User) Management
 
-Manager management
+Manager Management
 
-Task assignment and tracking
+Task Assignment and Tracking
 
-Secure routes using middleware
+Secure Routes using Middleware
 
-MVC architecture
+MVC Architecture
 
-EJS templating for UI
+EJS Templating for User Interface
 
 🛠️ Technology Stack
 Layer	Technology
@@ -42,7 +43,6 @@ PR_11_EMPLOYEE_MANAGEMENT
 │   ├── database.js
 
 │   └── dotenv.js
-
 │
 ├── controllers
 
@@ -51,24 +51,20 @@ PR_11_EMPLOYEE_MANAGEMENT
 │   ├── task.controller.js
 
 │   └── user.controller.js
-
 │
 ├── middlewares
 
 │   ├── userAuth.middleware.js
 
 │   └── userRole.middleware.js
-
 │
 ├── models
 
 │   ├── task.model.js
 
 │   └── user.model.js
-
 │
 ├── public
-
 │
 ├── routers
 
@@ -77,7 +73,6 @@ PR_11_EMPLOYEE_MANAGEMENT
 │   ├── task.route.js
 
 │   ├── user.route.js
-
 │   └── index.js
 │
 ├── views
@@ -93,7 +88,6 @@ PR_11_EMPLOYEE_MANAGEMENT
 │   │   ├── viewManager.ejs
 
 │   │   └── viewTask.ejs
-
 │   │
 │   └── partials
 
@@ -102,7 +96,6 @@ PR_11_EMPLOYEE_MANAGEMENT
 │       ├── footer.ejs
 
 │       └── index.ejs
-
 │
 ├── .env
 
@@ -114,23 +107,23 @@ PR_11_EMPLOYEE_MANAGEMENT
 
 └── package-lock.json
 
-⚙️ Configuration Files (configs)
+⚙️ Configuration Files
 database.js
 
-Connects the application to MongoDB.
+Establishes connection with MongoDB.
 
 dotenv.js
 
-Loads environment variables from .env.
+Loads environment variables from the .env file.
 
 axiosInstance.js
 
-Configures Axios for API calls.
+Configures Axios for API requests.
 
-🧠 Models (models)
+🧠 Models
 user.model.js
 
-Defines the User schema:
+Defines the User schema with the following fields:
 
 Name
 
@@ -142,56 +135,70 @@ Role (Admin / Manager / Employee)
 
 task.model.js
 
-Defines the Task schema:
+Defines the Task schema with:
 
-Task name
+Task Name
 
 Description
 
-Assigned employee
+Assigned Employee
 
 Status
 
-🎯 Controllers (controllers)
+🎯 Controllers
 user.controller.js
 
-User registration
+Handles:
 
-Login handling
+User Registration
 
-Manager creation
+User Login
 
-Viewing employees
+Manager Creation
+
+Viewing Employees
 
 task.controller.js
 
-Create task
+Handles:
 
-Assign task
+Task Creation
 
-View tasks
+Task Assignment
+
+Viewing Tasks
 
 client.controller.js
 
-Handles client-side page rendering
+Handles:
 
-🛡️ Middlewares (middlewares)
+Client-side page rendering using EJS
+
+🛡️ Middlewares
 userAuth.middleware.js
 
-Protects routes by checking login status
+Protects routes by checking user login status.
 
 userRole.middleware.js
 
-Restricts access based on user roles
+Restricts access based on user roles (Admin / Manager / Employee).
 
-🛣️ Routes (routers)
+🛣️ Routes
 user.route.js
 
-User-related APIs (login, add manager, view users)
+Login
+
+Add Manager
+
+View Users
 
 task.route.js
 
-Task creation and management routes
+Create Task
+
+Assign Task
+
+View Tasks
 
 client.route.js
 
@@ -199,13 +206,13 @@ Page rendering routes
 
 index.js
 
-Central route manager
+Central route handler
 
-🖼️ Views (views)
+🖼️ Views
 Pages
 Page	Description
-login.ejs	User login
-addManager.ejs	Add manager
+login.ejs	User login page
+addManager.ejs	Add manager page
 addTask.ejs	Create new task
 viewManager.ejs	View managers
 viewTask.ejs	View assigned tasks
@@ -219,11 +226,11 @@ index.ejs – Base layout
 
 🔐 Authentication & Authorization
 
-Login handled via session or token (middleware-based)
+Login handled using middleware-based authentication
 
 Protected routes using userAuth.middleware.js
 
-Role validation using userRole.middleware.js
+Role-based access control using userRole.middleware.js
 
 🌱 Environment Variables (.env)
 
@@ -233,40 +240,38 @@ PORT=3000
 MONGO_URI=mongodb://localhost:27017/ems
 
 ▶️ How to Run the Project
-
-Install dependencies
-
+1️⃣ Install Dependencies
 npm install
 
-
-Start MongoDB
-
+2️⃣ Start MongoDB
 mongod
 
-
-Run the application
-
+3️⃣ Run the Application
 npm start
 
-
-Open in browser
-
+4️⃣ Open in Browser
 http://localhost:3000
 
 📌 Future Enhancements
 
-Password encryption (bcrypt)
+Password Encryption using bcrypt
 
-Task status updates
+Task Status Updates
 
-Pagination & search
+Pagination and Search
 
-Admin dashboard
+Admin Dashboard
 
-REST API documentation
+REST API Documentation
 
 👨‍💻 Author
+
 Drashti Bilimoria
 
-Email : drashtibilimoria@gmail.com
-Password : 1234
+📧 Email: drashtibilimoria@gmail.com
+
+🔑 Admin Login Credentials (for testing):
+
+Email: drashtibilimoria@gmail.com
+
+Password: 1234
