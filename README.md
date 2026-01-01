@@ -232,6 +232,7 @@ Admin dashboard
 REST API documentation
 
 👨‍💻 Author
+Drashti Bilimoria
 
-Employee Management System
-Developed using Node.js & MongoDB
+Email : drashtibilimoria@gmail.com
+Password : 1234
