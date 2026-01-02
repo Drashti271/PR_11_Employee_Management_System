@@ -272,6 +272,6 @@ Drashti Bilimoria
 
 🔑 Admin Login Credentials (for testing):
 
-Email: drashtibilimoria@gmail.com
+Email: admin@gmail.com
 
-Password: 1234
+Password: 123
